@@ -16,15 +16,16 @@ public class Main {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://www.avito.ru");
+        driver.get("https://dev.by/");
 
-        WebElement element = driver.findElement(By.xpath("(//a[text()='Личные вещи'])[1]"));////a[@target='_self'][text()='Личные вещи'])
+        WebElement element = driver.findElement(By.xpath("//a[text()='Вход']"));
 
-        String par = element.getAttribute("pathname");//вытаскиваем значение из properties
+        //вернет значение свойства
+        String par = element.getCssValue("transition");
 
         System.out.println(par);
 
-        WebElement count = driver.findElement(By.cssSelector(".category-with-counters-count-29J0p.category-with-counters-count_item-3tm8b"));
-        System.out.println(count.getText());//строка содержит иникод, но в консоли он преобразуется
+      //  WebElement count = driver.findElement(By.cssSelector(".category-with-counters-count-29J0p.category-with-counters-count_item-3tm8b"));
+        //System.out.println(count.getText());//строка содержит иникод, но в консоли он преобразуется
     }
 }
