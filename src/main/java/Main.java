@@ -77,7 +77,10 @@ public class Main {
             driver.close();
             driver.switchTo().window(window1);
 
-        }catch (InterruptedException e){
+            //__________________________________
+            js.executeScript("document.querySelector('#a').setAttribute('style', 'opacity:1')");
+
+        } catch (InterruptedException e){
             e.printStackTrace();
         }finally {
             Thread.sleep(10000);
