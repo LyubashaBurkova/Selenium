@@ -22,24 +22,8 @@ public class Main {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
-            driver.get("https://pagination.js.org/");
+            driver.get("");
             Thread.sleep(2000);
-
-            List<WebElement> elements = driver.findElements(By.xpath("//div[@class='data-container']/ul/li"));
-            List<WebElement> pages = driver.findElements(By.xpath("//div[@class='paginationjs-pages']/ul/li"));
-
-            String text = elements.get(1).getText();
-            System.out.println(text);
-
-            pages.get(2).click();
-            //ждем когда пропадет первый элемент на листе
-            wait.until(ExpectedConditions.stalenessOf(elements.get(1)));
-
-            //обновили список
-            elements = (List<WebElement>) driver.findElements(By.xpath("//div[@class='data-container']/ul/li"));
-
-            text = elements.get(1).getText();
-            System.out.println(text);
 
         }catch (InterruptedException e){
             e.printStackTrace();
