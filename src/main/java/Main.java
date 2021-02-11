@@ -17,76 +17,9 @@ public class Main {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        JavascriptExecutor js = (JavascriptExecutor)driver;
         try {
             driver.get("http://127.0.0.1:5500/index.html");
             Thread.sleep(2000);
-
-            WebElement element1 = driver.findElement(By.id("a"));
-            WebElement element2 = driver.findElement(By.id("b"));
-            WebElement element3 = driver.findElement(By.id("c"));
-
-            element1.click();
-
-            //Переключение на alert, но тот не известно, когда он появился
-            //Alert alert = driver.switchTo().alert();
-
-            //ждем пока alert появится
-            Alert alert = wait.until(alertIsPresent());
-            //нажатие на ок
-            alert.accept();
-
-            element2.click();
-            Alert prompt = wait.until(alertIsPresent());
-            prompt.sendKeys("Supper!");
-            prompt.accept();
-
-            Alert alertAfterPrompt = wait.until(alertIsPresent());
-            Thread.sleep(4000);
-            alertAfterPrompt.accept();
-
-            element3.click();
-            Alert confirm = wait.until(alertIsPresent());
-            //нажатие на отмена
-            confirm.dismiss();
-
-            //_____________________________
-
-            //сохраняем дискриптор текущего окна
-            String window1 = driver.getWindowHandle();
-
-            //открываем новое окно
-            js.executeScript("window.open()");
-
-            //получим набор строк и запишем в переменную
-            Set<String> currentWindows = driver.getWindowHandles();
-
-            String window2 = null;
-
-            for (String window : currentWindows) {
-                if (!window.equals(window1)) {
-                    window2 = window;
-                    break;
-                }
-            }
-
-            //переключаемся на второе окно
-            driver.switchTo().window(window2);
-            driver.get("https://www.google.ru/");
-
-            //мы закрыли вкладку, но на нее еще не перешли
-            driver.close();
-            driver.switchTo().window(window1);
-
-            //__________________________________
-            js.executeScript("document.querySelector('#a').setAttribute('style', 'opacity:1')");
-
-            //__________________________________
-
-            String title = driver.getTitle();
-            //проверяем соответствует ли title,
-            //если в качестве значения передать не For Selenium, то получим ошибку
-            Assert.assertEquals(title, "For Selenium");
 
         } catch (InterruptedException e){
             e.printStackTrace();
