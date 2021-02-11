@@ -24,6 +24,11 @@
             <artifactId>selenium-java</artifactId>
             <version>LATEST</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>
+        </dependency>
     </dependencies>
 
 </project>

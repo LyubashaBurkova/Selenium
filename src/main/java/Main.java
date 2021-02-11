@@ -1,6 +1,7 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Set;
@@ -79,6 +80,13 @@ public class Main {
 
             //__________________________________
             js.executeScript("document.querySelector('#a').setAttribute('style', 'opacity:1')");
+
+            //__________________________________
+
+            String title = driver.getTitle();
+            //проверяем соответствует ли title,
+            //если в качестве значения передать не For Selenium, то получим ошибку
+            Assert.assertEquals(title, "For Selenium");
 
         } catch (InterruptedException e){
             e.printStackTrace();
