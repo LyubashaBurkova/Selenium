@@ -1,16 +1,31 @@
 package smoke;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Test1 {
+    //можем забирать данные в тесте от провайдера
+    @DataProvider(name = "db")
+        //при работе с провайдером данные передаем через метед
+        //метод должен быть статичный
+        //массив из объектов
+        public static Object[][] dbDate () {
+        return new Object[][] {
+                {"SQL", new Integer(1)},
+                {"NOSQL", new Integer(2)}
+        };
+    }
+
+
     //@Test анотация для метода
     //пусть первый тест будет относится к группе тестов (двум группам)
     //это удабно, т.к. можем запускать отдельные группы
     @Parameters({"db"})
-    @Test (groups = {"smokeTest", "regress"})
-    public void test1 (String db) {
-        System.out.println("Test 1" + db);
+    @Test (dataProvider = "db")
+    //@Test (groups = {"smokeTest", "regress"})
+    public void test1 (String db, int e2) {
+        System.out.println("Test 1" + db + " " + e2);
     }
 
     @Test (groups = {"regress"})
