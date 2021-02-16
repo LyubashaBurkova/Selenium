@@ -4,12 +4,12 @@
 
 <suite name="All Test Suite">
     <test name="smoke.Test1">
-        <groups>
+        <!--<groups>
             <run>
                 <include name="regress" />
             </run>
-        </groups>
-
+        </groups>-->
+        <parameter name="db" value="SQL"></parameter>
         <classes>
             <class name="smoke.Test1"></class>
             <class name="smoke.Test2"></class>
